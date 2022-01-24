@@ -4,6 +4,7 @@
 import mysql.connector as mysql
 import json
 import numpy as np
+import pymongo
 
 ## connecting to the database using 'connect()' method
 ## it takes 3 required parameters 'host', 'user', 'passwd'
@@ -20,6 +21,11 @@ if db:
 else:
     print("Connection Not Established")
 
+myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+mydb = myclient["mydatabase"]
+mycol = mydb["events"]
+
+## some json stuff
 event_json_file = open("event.json", )
 event_record = json.load(event_json_file)
 event_json_file.close()
@@ -54,7 +60,7 @@ activity.what as activityWhat \
 FROM viens.devices, viens.activity, viens.apps \
 where devices.uniqueid = activity.location \
 and activity.timestamp > '2022-01-01' \
-and activity.appid = apps.id limit 10"
+and activity.appid = apps.id limit 2"
 
 ## getting records from the table
 cursor.execute(query)
@@ -65,40 +71,118 @@ num_fields = len(cursor.description)
 field_names = [i[0] for i in cursor.description]
 print(field_names)
 
-mydict = dict()
+#mydict = dict()
 
 for record in records:
-    mydict = {"devicesID": record[0],
-              "devicesUniqueid" :  record[1],
-             "devicesWallid":  record[2],
-             "devicesGroupid":  record[3],
-             "devicesUserid":  record[4],
-             "devicesAppid":  record[5],
-             "devicesName":  record[6],
-             "devicesLocation":  record[7],
-             "devicesZone":  record[8],
-             "devicesCity":  record[9],
-             "devicesState":  record[10],
-             "devicesDistrict":  record[11],
-             "devicesRegion":  record[12],
-             "devicesTimezone":  record[13],
-             "devicesVersion":  record[14],
-             "devicesLastquery":  str(record[15]),
-             "devicesLastupdate":  str(record[16]),
-             "devicesInterval":  record[17],
-             "activityId":  record[18],
-             "activityLocation":  record[19],
-             "activityTimestamp":  str(record[20]),
-             "activityEvent":  record[21],
-             "activityType":  record[22],
-             "activityWhat":  str(record[23])
-    }
-    # print(record)
+    mystr = str()
+    mystr += "{ \"event\" : { "
+    mystr += " \"devicesID\" : "
+    mystr += "\""
+    mystr += str(record[0])
+    mystr += "\""
+    mystr += ", \"devicesUniqueid\" : "
+    mystr += "\""
+    mystr += record[1]
+    mystr += "\""
+    mystr += ", \"devicesWallid\" : "
+    mystr += "\""
+    mystr += str(record[2])
+    mystr += "\""
+    mystr += ", \"devicesGroupid\" : "
+    mystr += "\""
+    mystr += str(record[3])
+    mystr += "\""
+    mystr += ", \"devicesUserid\" : "
+    mystr += "\""
+    mystr += str(record[4])
+    mystr += "\""
+    mystr += ", \"devicesAppid\" : "
+    mystr += "\""
+    mystr += str(record[5])
+    mystr += "\""
+    mystr += ", \"devicesName\" : "
+    mystr += "\""
+    mystr += record[6]
+    mystr += "\""
+    mystr += ", \"devicesLocation\" : "
+    mystr += "\""
+    mystr += record[7]
+    mystr += "\""
+    mystr += ", \"devicesZone\" : "
+    mystr += "\""
+    mystr += record[8]
+    mystr += "\""
+    mystr += ", \"devicesCity\" : "
+    mystr += "\""
+    mystr += record[9]
+    mystr += "\""
+    mystr += ", \"devicesState\" : "
+    mystr += "\""
+    mystr += record[10]
+    mystr += "\""
+    mystr += ", \"devicesDistrict\" : "
+    mystr += "\""
+    mystr += record[11]
+    mystr += "\""
+    mystr += ", \"devicesRegion\" : "
+    mystr += "\""
+    mystr += record[12]
+    mystr += "\""
+    mystr += ", \"devicesTimezone\" : "
+    mystr += "\""
+    mystr += str(record[13])
+    mystr += "\""
+    mystr += ", \"devicesVersion\" : "
+    mystr += "\""
+    mystr += record[14]
+    mystr += "\""
+    mystr += ", \"devicesLastquery\" : "
+    mystr += "\""
+    mystr += str(record[15])
+    mystr += "\""
+    mystr += ", \"devicesLastupdate\" : "
+    mystr += "\""
+    mystr += str(record[16])
+    mystr += "\""
+    mystr += ", \"devicesInterval\" : "
+    mystr += "\""
+    mystr += str(record[17])
+    mystr += "\""
+    mystr += ", \"activityId\" : "
+    mystr += "\""
+    mystr += str(record[18])
+    mystr += "\""
+    mystr += ", \"activityLocation\" : "
+    mystr += "\""
+    mystr += record[19]
+    mystr += "\""
+    mystr += ", \"activityTimestamp\" : "
+    mystr += "\""
+    mystr += str(record[20])
+    mystr += "\""
+    mystr += ", \"activityEvent\" : "
+    mystr += "\""
+    mystr += record[21]
+    mystr += "\""
+    mystr += ", \"activityType\" : "
+    mystr += "\""
+    mystr += record[22]
+    mystr += "\""
+    mystr += ", \"activityWhat\" : "
+    mystr += "\""
+    mystr += str(record[23]).replace('"','').replace('{','').replace('}','').replace(':','').replace(',','')
+    mystr += "\""
+    mystr += "} }"
+    print(mystr)
+    d = json.loads(mystr)
+    myText = open(r'./' + str(record[18]) + '.json', 'w')
+    myText.write(mystr)
+    myText.close()
+    print(record)
 
-    stud_json = json.dumps(mydict, indent=2, sort_keys=True)
+#stud_json = json.dumps(mydict, indent=2, sort_keys=True)
+print(mystr)
 
-    print(stud_json)
-
-    ## Showing the data
-    ## for record in records:
-    ##    print(record)
+#x = mycol.insert_many(stud_json)
+#print list of the _id values of the inserted documents:
+#print(x.inserted_ids)
