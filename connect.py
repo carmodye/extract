@@ -14,21 +14,20 @@ db = mysql.connect(
     database="viens"
 )
 
-
+if db:
+    print ("Connected Successfully")
+else:
+    print ("Connection Not Established")
 ## json
+
 class create_dict(dict):
+
     # __init__ function
     def __init__(self):
         self = dict()
         # Function to add key:value
-    def add(self, key: object, value: object) -> object:
-        """
-
-        :type value: object
-        """
+    def add(self, key, value):
         self[key] = value
-
-## print(db)  # it will print a connection object if everything is fine
 
 cursor = db.cursor()
 
@@ -72,8 +71,10 @@ field_names = [i[0] for i in cursor.description]
 print(field_names)
 
 mydict = create_dict()
+mycounter: int = int(0)
 
 for record in records:
+    mycounter = mycounter + 1
     mydict.add(record[21],({"devicesID":record[0], \
                          "devicesUniqueid":record[1], \
                          "devicesWallid":record[2],
