@@ -1,0 +1,28 @@
+{
+  "event": {
+    "activityEvent": "",
+    "activityId": "",
+    "activityLocation": "",
+    "activityTimestamp": "",
+    "activityType": "",
+    "activityWhat": "",
+    "devicesAppid": "",
+    "devicesCity": "",
+    "devicesDistrict": "",
+    "devicesGroupid": "",
+    "devicesID": "",
+    "devicesInterval": "",
+    "devicesLastquery": "",
+    "devicesLastupdate": "",
+    "devicesLocation": "",
+    "devicesName": "",
+    "devicesRegion": "",
+    "devicesState": "",
+    "devicesTimezone": "",
+    "devicesUniqueid": "",
+    "devicesUserid": "",
+    "devicesVersion": "",
+    "devicesWallid": "",
+    "devicesZone": ""
+  }
+}

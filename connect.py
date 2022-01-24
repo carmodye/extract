@@ -3,6 +3,7 @@
 ## importing 'mysql.connector' as mysql for convenient
 import mysql.connector as mysql
 import json
+import numpy as np
 
 ## connecting to the database using 'connect()' method
 ## it takes 3 required parameters 'host', 'user', 'passwd'
