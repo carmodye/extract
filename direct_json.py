@@ -21,9 +21,15 @@ if db:
 else:
     print("Connection Not Established")
 
-myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+
+myclient = pymongo.MongoClient('localhost:27017',
+                               username='root',
+                               password='example',
+                               authSource='admin',
+                               authMechanism='SCRAM-SHA-256')
 mydb = myclient["mydatabase"]
 mycol = mydb["events"]
+
 
 ## some json stuff
 event_json_file = open("event.json", )
@@ -60,16 +66,16 @@ Cast(activity.what As char(512)) as activityWhat \
 FROM viens.devices, viens.activity, viens.apps \
 where devices.uniqueid = activity.location \
 and activity.timestamp > '2022-01-01' \
-and activity.appid = apps.id limit 2"
+and activity.appid = apps.id limit 10000"
 
 ## getting records from the table
 cursor.execute(query)
 
 ## fetching all records from the 'cursor' object
 records = cursor.fetchall()
-num_fields = len(cursor.description)
-field_names = [i[0] for i in cursor.description]
-print(field_names)
+#num_fields = len(cursor.description)
+#field_names = [i[0] for i in cursor.description]
+#print(field_names)
 
 # the what record we need to parse
 # {
@@ -83,7 +89,6 @@ print(field_names)
 #     "datetime": "2019-11-01T19:45:22.797Z",
 #     "location": "Ashley Kiosk"
 # }
-
 
 
 for record in records:
@@ -182,20 +187,26 @@ for record in records:
     mystr += record[22]
     mystr += "\""
     mystr += ", \"activityWhat\" : "
-    mystr += "\""
-    mystr += str(record[23]).replace('"','').replace('{','').replace('}','').replace(':','').replace(',','')
-    mystr += "\""
+    #    mystr += "\""
+    #    mystr += str(record[23]).replace('"','').replace('{','').replace('}','').replace(':','').replace(',','')
+    #    mystr += "\""
+    localstr = str(record[23])
+    what = json.loads(localstr)
+    mystr += json.dumps(what)
     mystr += "} }"
-    print(mystr)
     d = json.loads(mystr)
-    myText = open(r'./' + str(record[18]) + '.json', 'w')
-    myText.write(mystr)
-    myText.close()
-    print(record)
+    x = mycol.insert_one(d)
 
-#stud_json = json.dumps(mydict, indent=2, sort_keys=True)
-print(mystr)
+#print(mystr)
 
-#x = mycol.insert_many(stud_json)
-#print list of the _id values of the inserted documents:
-#print(x.inserted_ids)
+#myText = open(r'./' + str(record[18]) + '.json', 'w')
+#myText.write(mystr)
+#myText.close()
+#print(record)
+
+# stud_json = json.dumps(mydict, indent=2, sort_keys=True)
+#print(mystr)
+
+# x = mycol.insert_many(stud_json)
+# print list of the _id values of the inserted documents:
+# print(x.inserted_ids)
