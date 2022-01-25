@@ -1,0 +1,215 @@
+{
+    "SHOWAPPSELECT": false,
+
+    "APPID": 27,
+    "PLAYLIST": "app27playlist",
+
+    "TOPSTORES": 5,
+    "TOPVIDEOS": 5,
+    "SLIDEDOWN_COLUMNS": 3,
+    "NOCONTENT": "No data to display for the selected dates.",
+
+    "FILETYPES": {
+        "image": ["gif", "jpg", "jpeg", "png"],
+        "video": "mp4"
+    },
+
+    "TITLEIDS": {
+        "overview": "overview-title",
+        "topstores": "topstores-title",
+        "distribution": "distribution-title",
+        "interactions": "interactions-title",
+        "home": "home-title",
+        "category": "category-title"
+    },
+
+    "TITLES": {
+       "overview": "At a Glance",
+       "topstores": "Interactions by Location",
+       "current": "Current",
+       "distribution": "Distribution",
+       "interactions": "Interactions",
+       "video": "Video Interaction",
+       "myteam": "My Store Interaction",
+       "home": "Home Screen Interaction",
+       "category": "Category Interaction"
+    },
+
+    "SCORES": {
+       "controlClick": 1,
+       "feedbackClick": 1,
+       "pageView": 1,
+       "videoView": 1,
+       "voteClick": 1
+    },
+
+    "SCORE_LEGEND": {
+       "title": "Interaction Key",
+       "Play/Pause Button": "",
+       "Rewind": "",
+       "Fast Forward": "",
+       "Access Videos": "",
+       "Access My Store": "",
+       "Video View": "",
+       "Video Vote": "",
+       "Question Submit": ""
+    },
+
+    "HOME_LEGEND": {
+       "slides": {
+           "name": "Playlist Slides",
+           "color": "#ffffff"
+       },
+       "feedback": {
+            "name": "Feedback",
+            "color": "#fbaf3f"
+        },
+       "videos": {
+            "name": "Video Visit",
+            "color": "#f1df28"
+        },
+       "notices": {
+            "name": "My Store Visit",
+            "color": "#1b75bb"
+        }
+    },
+
+    "CATEGORIES": {
+       "1": "Perks & Benefits",
+       "2": "Cigs & Tobacco",
+       "3": "Contests",
+       "4": "Food Service & Marketing",
+       "5": "Internal Comms",
+       "6": "Policies",
+       "7": "Procedures",
+       "8": "RISC",
+       "9": "Sheetz Accolades",
+       "10": "Recognition",
+       "11": "Strategic Messaging",
+       "12": "Employee Promo Awareness"
+    },
+
+    "EVENTS": {
+       "click": "button click",
+       "view": "page view"
+    },
+
+    "TYPES": {
+       "click": {
+          "control": "control",
+          "feedback": "feedback",
+          "vote": "vote"
+       },
+       "view": {
+          "page": "page",
+          "slide": "slide",
+          "video": "video"
+       }
+    },
+
+    "CONTROLS": {
+       "play": "play",
+       "pause": "pause",
+       "prev": "previous",
+       "next": "next"
+    },
+
+    "VOTES": {
+       "thumbsup": "like",
+       "thumbsdown": "dislike"
+    },
+
+    "TABLES": {
+       "file": {
+          "name": "",
+          "category": "Category",
+          "paused": "Paused",
+          "yes": "Yes",
+          "no": "No"
+       },
+       "home": {
+          "slides": "Playlist Slides",
+          "feedback": "Feedback",
+          "videos": "Video Visits",
+          "notices": "My Store Visits"
+       },
+       "overview": {
+           "total": "Total<br />Interactions",
+           "average": "Average <br />Per Store",
+           "topFile": "Top File",
+           "topPage": "Top Page"
+       },
+       "topStores": {
+           "name": "",
+           "interactions": "Interactions",
+           "city": "City",
+           "state": "State"
+       },
+       "video": {
+          "name": "",
+          "views": "Total<br />Views",
+          "thumbsdown": "Thumbs<br />Down",
+          "thumbsup": "Thumbs<br />Up"
+       }
+    },
+
+    "PAGES": {
+       "videos-page": "videos-page"
+    },
+
+    "NOTICES": {
+       "birthday": "Birthdays",
+       "anniversary": "Anniversaries",
+       "sales": "F&B 50K",
+       "ahod": "AHOD",
+       "friendliness": "Friendliness Score"
+    },
+
+    "PLOTLY": {
+       "config": {
+          "displayModeBar": false,
+          "staticPlot": true
+       },
+       "layout": {
+          "autosize": false,
+          "font": {
+             "family": "OpenSans-Regular",
+             "size": 13,
+             "color": "#fff"
+          },
+          "title": {
+             "font": {
+                "family": "OpenSans-Regular",
+                "size": 13,
+                "color": "#fff"
+             }
+          },
+          "automargin": false,
+          "paper_bgcolor": "rgba(0,0,0,0)",
+          "plot_bgcolor": "rgba(0,0,0,0)"
+       }
+    },
+
+    "COLORS": {
+        "grey": "#58585b",
+        "red": "#c2002f",
+        "orange": "#fbaf3f",
+        "yellow": "#f1df28",
+        "blue": "#1b75bb",
+        "white": "#ffffff",
+        "piechart": {
+            "1": "#f9cf97",
+            "2": "#f7a153",
+            "3": "#d16428",
+            "4": "#a8d1a0",
+            "5": "#45ad4e",
+            "6": "#406b42",
+            "7": "#00aae3",
+            "8": "#1a76b9",
+            "9": "#4b4699",
+            "10": "#ee5b52",
+            "11": "#8c2134",
+            "12": "#aaa9ad"
+        }
+    }
+}

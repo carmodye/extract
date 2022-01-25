@@ -56,7 +56,7 @@ activity.location as activityLocation, \
 activity.timestamp as activityTimestamp,\
 activity.event as activityEvent,\
 activity.type as activityType, \
-activity.what as activityWhat \
+Cast(activity.what As char(512)) as activityWhat \
 FROM viens.devices, viens.activity, viens.apps \
 where devices.uniqueid = activity.location \
 and activity.timestamp > '2022-01-01' \
@@ -71,7 +71,20 @@ num_fields = len(cursor.description)
 field_names = [i[0] for i in cursor.description]
 print(field_names)
 
-#mydict = dict()
+# the what record we need to parse
+# {
+#     "event": "page view",
+#     "type": "slide",
+#     "data": {
+#         "category": "5",
+#         "id": "12",
+#         "filename": "CoachingExcellence_Nominees.jpg"
+#     },
+#     "datetime": "2019-11-01T19:45:22.797Z",
+#     "location": "Ashley Kiosk"
+# }
+
+
 
 for record in records:
     mystr = str()
